@@ -1,0 +1,21 @@
+﻿@model TouristGuide.Models.News
+
+@{
+    ViewBag.Title = "News delete";
+}
+
+<p>Are you sure to delete this news?</p>
+
+<div class="post">
+	<h1 class="title">@Model.Title</h1>
+    <p class="date">@String.Format("{0:d} ({0:HH}:{0:mm})", Model.Date)</p>
+	<p>@Html.Raw(Model.Text)</p>
+    @using (Html.BeginForm()) {
+        <p>
+            <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Back to news index", "Index")
+        </p>
+    }
+</div>
+
+

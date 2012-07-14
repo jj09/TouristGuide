@@ -1,0 +1,22 @@
+﻿@model TouristGuide.Models.AttractionReview
+
+@{
+    ViewBag.Title = "Delete Review";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div class="review">
+    <p><b>Attraction: </b>@ViewBag.Attraction.Name</p>
+    <p><b>Author: </b>@Model.Author</p>
+    <p><b>Date: </b>@String.Format("{0:d} ({0:HH}:{0:mm})", Model.Date)</p>
+    <p><b>Rating: </b>@Model.Rating</p>
+    <p>@Model.Text</p>
+</div>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to Attraction", "Details", new { id = ViewBag.Attraction.ID })
+    </p>
+}

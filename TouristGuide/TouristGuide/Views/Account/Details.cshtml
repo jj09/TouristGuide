@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "User: " + Model.UserName;
+}
+
+<table>
+    <tr>
+        <th>User:</th><td>@Model.UserName</td>
+    </tr>
+    <tr>
+        <th>E-mail:</th><td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Active:</th>
+        <td>               
+            @if (@Model.IsApproved == true)
+            {
+                <text>Yes</text>
+            }
+            else
+            {
+                <text>No</text>
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>Role:</th><td>@ViewBag.Role</td>
+    </tr>
+
+</table>
+
+@if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.UserName }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.UserName }) |
+        @Html.ActionLink("Go back to users' list", "Index")
+    </p>
+}

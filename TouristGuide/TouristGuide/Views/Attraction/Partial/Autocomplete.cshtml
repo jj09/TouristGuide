@@ -1,0 +1,85 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        $("#country").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("LookupCountry", "Attraction")',
+                    dataType: "json",
+                    data: {
+                        limit: 50,
+                        query: request.term
+                    },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Country,
+                                id: item.Country
+                            }
+                        }));
+                    }
+                });
+            },
+            minLength: 2,
+            open: function () {
+                $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+            },
+            close: function () {
+                $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+            }
+        });
+        $("#place").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("LookupPlace", "Attraction")',
+                    dataType: "json",
+                    data: {
+                        limit: 50,
+                        query: request.term
+                    },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Place,
+                                id: item.Place
+                            }
+                        }));
+                    }
+                });
+            },
+            minLength: 2,
+            open: function () {
+                $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+            },
+            close: function () {
+                $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+            }
+        });
+        $("#attraction").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("LookupAttraction", "Attraction")',
+                    dataType: "json",
+                    data: {
+                        limit: 50,
+                        query: request.term
+                    },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Attraction,
+                                id: item.Attraction
+                            }
+                        }));
+                    }
+                });
+            },
+            minLength: 2,
+            open: function () {
+                $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+            },
+            close: function () {
+                $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+            }
+        });
+    });
+</script>

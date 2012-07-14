@@ -1,0 +1,58 @@
+﻿@model TouristGuide.Models.LogOnModel
+@if (Request.IsAuthenticated)
+{
+   
+    <div style="background-color: White;">
+        <fieldset style="border: none; padding-top: 10px;">
+            <span style="font-size: 14px; color: gray; padding-top: 40px;">
+            Welcome <b>@Context.User.Identity.Name</b> !
+            [ @Html.ActionLink("Log Off", "LogOff", "Account", new { returnUrl = Request.RawUrl }, null) ]
+            </span>
+        </fieldset>
+    </div>
+    
+    <div style="background-color: White;">
+        <fieldset style="border: none; padding-top: 10px;">
+            <span style="font-size: 14px; color: gray; padding-top: 40px;">
+                <div style="border-bottom: 1px solid; font-size: 18px; margin-bottom: 5px;">Details<br/></div>                
+                @Html.ActionLink("Change Password", "ChangePassword", "Account", new { returnUrl = Request.RawUrl }, null)
+                <br/><br />
+                <div style="border-bottom: 1px solid; font-size: 18px; margin-bottom: 5px;">Wall<br/></div>   
+                @Html.ActionLink("Favourite Attractions", "Index", "MyAttraction")
+            </span>
+        </fieldset>
+    </div>
+    
+}
+
+else
+{
+@*@using (Html.BeginForm()) 
+    {*@
+   
+    
+    
+   
+    using (Html.BeginForm("LogOn", "Account", new { returnUrl = Request.RawUrl }, FormMethod.Post, null))
+    {
+    <span style="font-size: 30px; color: white; padding-top: 40px; padding-left: 21px;">
+        Log On</span>
+    <fieldset>
+        <label for="UserName" style="font-size: 16px; color: White;">
+            User:</label><br />@Html.TextBoxFor(m => m.UserName)<br />
+        <label for="Password" style="font-size: 16px; color: White;">
+            Password:</label><br />@Html.PasswordFor(m => m.Password)<br />
+        <input type="submit" value="Log On" style="margin-top: 10px; color: Gray;" />
+    </fieldset>
+    }
+    <div style="background-color: White;">
+        <fieldset style="border: none; padding-top: 10px;">
+            <span style="font-size: 14px; color: gray; padding-top: 40px;">@Html.ActionLink("Register", "Register", "Account")
+                if you don't have an account</span>
+        </fieldset>
+    </div>
+    
+ 
+    
+@*}*@
+}

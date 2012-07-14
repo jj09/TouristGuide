@@ -1,0 +1,79 @@
+﻿@model TouristGuide.Models.Place
+
+@{
+    ViewBag.Title = "Create city/region";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/tiny_mce/tiny_mce.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        mode: "specific_textareas",
+        editor_selector: "TinyMCE",
+        theme: "advanced"
+    });
+
+    function UpdateText() {
+        var text = tinyMCE.get('Description').getContent();
+        $('#Description').html(text);
+    }
+</script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Details</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description, new { @class = "TinyMCE" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Location</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Coordinates.Latitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Coordinates.Latitude)
+            @Html.ValidationMessageFor(model => model.Coordinates.Latitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Coordinates.Longitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Coordinates.Longitude)
+            @Html.ValidationMessageFor(model => model.Coordinates.Longitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Country)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Country.ID, new SelectList(ViewBag.Countries, "Value", "Text"))
+        </div>
+
+        <p>
+            <input type="submit" value="Create" onclick="UpdateText()" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

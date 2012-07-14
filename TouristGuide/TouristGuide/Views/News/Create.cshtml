@@ -1,0 +1,60 @@
+﻿@model TouristGuide.Models.NewsTimeViewModel
+
+@{
+    ViewBag.Title = "News create";
+}
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script src="@Url.Content("~/Scripts/NewsDateHelper.js")" type="text/javascript"></script>
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>News</legend>
+
+        <div class="editor-label">
+            Title
+        </div>
+        <div class="editor-field">
+            @Html.ValidationMessageFor(model => model.News.Title)
+            @Html.TextBoxFor(model => model.News.Title, new { style = "width:20em" }) 
+        </div>
+
+        <div class="editor-label">
+            Body
+        </div>
+        <div class="editor-field">
+            @Html.ValidationMessageFor(model => model.News.Text)
+            @Html.EditorFor(model => model.News.Text)            
+        </div>
+
+        <div class="editor-label" id="date-label">
+            Date
+        </div>
+        <div class="editor-field" id="date-editor">
+            @Html.ValidationMessageFor(model => model.News.Date)
+            @Html.EditorFor(model => model.News.Date) 
+        </div>
+
+        <div class="editor-label" id="time-label">
+            Time
+        </div>
+        <div class="editor-field" id="time-editor">
+            @Html.ValidationMessageFor(model => model.Hour)
+            @Html.ValidationMessageFor(model => model.Minutes)
+            @Html.EditorFor(model => model.Hour)
+            :
+            @Html.EditorFor(model => model.Minutes)
+            <input type="button" value="Now" id="time-now" />
+        </div>       
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Go back to news index", "Index")
+</div>

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<TouristGuide.Models.Attraction>
+
+@{
+    ViewBag.Title = "My attractions";
+}
+
+<ul>
+@if (Model == null)
+{
+    <text>Your attractions list is empty.</text>
+}
+else
+{ 
+    foreach (var item in Model) {
+        <li>
+            @Html.ActionLink(item.Name,"Details", "Attraction", new {id = item.ID},null) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </li>
+    }
+}
+</ul>

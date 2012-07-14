@@ -1,0 +1,46 @@
+﻿@model TouristGuide.Models.Place
+@{
+    ViewBag.Title = Model.Name;
+}
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetMap();
+        //call the action created to retrieve the data
+        $.post("/Place/AttractionsForPlace?place=@Model.Name", null, function (data) {
+            //iterate through the 'data' retireved
+            $.each(data, function (item, location) {
+                AddLocationPin(location.Latitude, location.Longitude, location.Title, location.Description);
+            });
+        });
+    });
+    var map = null;
+    function GetMap() {
+        map = new VEMap('myMap');
+        map.LoadMap(new VELatLong(@Model.Coordinates.Latitude, @Model.Coordinates.Longitude), 11, 'Road', false);
+    }
+    function AddLocationPin(latitude, longitude, title, description) {      
+        //create new pushpin shape      
+        shape = new VEShape(VEShapeType.Pushpin, new VELatLong(latitude, longitude));      
+        //set title for info box      
+        shape.SetTitle(title);      
+        //set html for info box      
+        shape.SetDescription(description);      
+        //add pin      
+        map.AddShape(shape);  
+    }
+
+</script>
+Country: @Html.ActionLink(Model.Country.Name, "Details", "Country", new { id = Model.Country.ID }, null)<br />
+@Html.ActionLink("Show Attractions", "Index", "Attraction", new { place = Model.Name }, null)
+@if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+<div id='myMap' style="position: relative; width: 600px; height: 400px">
+</div>
+<p>@Html.Raw(Model.Description)</p>

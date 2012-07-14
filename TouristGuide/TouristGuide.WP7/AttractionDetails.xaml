@@ -1,0 +1,63 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="First_WPA.AttractionDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False" xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps" >
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <controls:Panorama Name="panorama" >
+
+            <!--Panorama item one-->
+            <controls:PanoramaItem Name="attractionHeader" Header="Localization">
+                <Grid Height="502" Width="440" Margin="0,189,0,0">
+                    <Button Content="Add to favorites" Height="74" HorizontalAlignment="Left" Margin="2,-14,0,0" Name="btnAddFavorites" VerticalAlignment="Top" Width="418" Foreground="#FF00FF15" BorderBrush="#FF7EDB88" OpacityMask="#FF7BE5A1" Click="addFavorites_Click" />
+                    <my:Map Height="425" HorizontalAlignment="Left" Name="map1" VerticalAlignment="Top" Width="408" CredentialsProvider="Ak-j1fNexs-uNWG_YoP2WZlthezPoUWsRvSexDLTGfjQ1XqKgnfR1nqeC2YbZZSn" Margin="3,53,0,0" />
+                </Grid>
+            </controls:PanoramaItem>
+
+            <!--Panorama item two-->
+            <controls:PanoramaItem Header="Reviews">
+                <Grid Height="502" Width="448" Margin="0,189,0,0">
+                    <ListBox Height="504" Margin="0,-6,28,0" Name="lBReviews" VerticalAlignment="Top" IsEnabled="True">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                
+                                <StackPanel Orientation="Horizontal" Height="200">
+                                    <TextBlock Text="Rate: " FontSize="28" />
+                                    <TextBlock Text="{Binding Rating}" FontSize="28" />
+                                     <StackPanel Width="370">
+                                        <TextBlock Text=" Author: " FontSize="28" />
+                                        <TextBlock Text="{Binding Author}" FontSize="28" />
+                                        <TextBlock Text="{Binding Text}" FontSize="28" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </controls:PanoramaItem>
+            <!--Panorama item third-->
+            <controls:PanoramaItem Header="Description">
+                <Grid Height="502" Width="442" Margin="0,189,0,0">
+                    <TextBlock TextWrapping="Wrap" Height="476" HorizontalAlignment="Left" Margin="3,2,0,0" Name="tbDescription" Text="TextBlock" VerticalAlignment="Top" Width="422" />
+
+                </Grid>
+            </controls:PanoramaItem>
+        </controls:Panorama>
+        
+    </Grid>
+
+    <!--Panorama-based applications should not show an ApplicationBar-->
+
+</phone:PhoneApplicationPage>

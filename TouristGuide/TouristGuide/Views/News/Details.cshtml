@@ -1,0 +1,20 @@
+﻿@model TouristGuide.Models.News
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="post">
+    <p class="date">@String.Format("{0:d} ({0:HH}:{0:mm})", Model.Date)</p>
+	<p>@Html.Raw(Model.Text)</p>
+    @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+    {
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+            @Html.ActionLink("Go back to news index", "Index")
+        </p>
+    }
+</div>
+
+

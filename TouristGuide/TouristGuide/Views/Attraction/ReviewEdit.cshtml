@@ -1,0 +1,67 @@
+﻿@model TouristGuide.Models.AttractionReview
+
+@{
+    ViewBag.Title = "Review Edit";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Review Details</legend>
+
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.AttractionID)
+        <input type="hidden" value="@ViewBag.currentRating" name="oldRating" id="oldRating" />
+
+        <div class="editor-label">
+            Attraction:
+        </div>
+        <div class="editor-field">
+            <b>@ViewBag.Attraction.Name</b>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Author)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Author)
+            @Html.ValidationMessageFor(model => model.Author)
+        </div>
+
+        <div class="editor-label">
+            Date:
+        </div>
+        <div class="editor-field">
+            <b>@String.Format("{0:d} ({0:HH}:{0:mm})", Model.Date)</b>
+            <input type="hidden" name="Date" id="Date" value="@Model.Date" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rating)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Rating)
+            @Html.ValidationMessageFor(model => model.Rating)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Attraction", "Details", new { id = ViewBag.Attraction.ID })
+</div>

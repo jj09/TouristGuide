@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99896CE7-EA42-4E8B-B58C-6BBCEA2F40EC}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TouristGuide</RootNamespace>
+    <AssemblyName>GrupaEKA</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="ApplicationServices-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=.\SQLEXPRESS%3bInitial Catalog=GrupaEkaDB%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\ApplicationServices-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="GrupaEkaDB-Deployment" Order="2">
+          <Destination Path="" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=.\SQLEXPRESS%3bInitial Catalog=GrupaEkaDB%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\GrupaEkaDB-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="ApplicationServices-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=.\SQLEXPRESS%3bInitial Catalog=GrupaEkaDB%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\ApplicationServices-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="GrupaEkaDB-Deployment" Order="2">
+          <Destination Path="Data Source=clea.mic.psnc.pl%3bInitial Catalog=pm.studentlive.pl%3bUser ID=jj09%3bPassword=X0HzMoxOSV" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=.\SQLEXPRESS%3bInitial Catalog=GrupaEkaDB%3bIntegrated Security=True" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\GrupaEkaDB-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <DeployIisAppPath>Default Web Site/GrupaEka</DeployIisAppPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers">
+      <HintPath>..\packages\microsoft-web-helpers.1.15\lib\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttractionController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\GenerateController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyAttractionController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PlaceController.cs" />
+    <Compile Include="Controllers\WebServiceController.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CustomHelpers.cs" />
+    <Compile Include="Helpers\DbHelpers.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Attraction.cs" />
+    <Compile Include="Models\AttractionEditViewModel.cs" />
+    <Compile Include="Models\AttractionImage.cs" />
+    <Compile Include="Models\AttractionType.cs" />
+    <Compile Include="Models\AttractionReview.cs" />
+    <Compile Include="Models\AttractionViewModel.cs" />
+    <Compile Include="Models\Coordinates.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\ITouristGuideDB.cs" />
+    <Compile Include="Models\MyAttraction.cs" />
+    <Compile Include="Models\Place.cs" />
+    <Compile Include="Models\PushPinModel.cs" />
+    <Compile Include="Models\TouristGuideDB.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewsTimeViewModel.cs" />
+    <Compile Include="Models\UserRoleViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\404.jpg" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\bullet.gif" />
+    <Content Include="Content\images\city.png" />
+    <Content Include="Content\images\city2.png" />
+    <Content Include="Content\images\comments.gif" />
+    <Content Include="Content\images\countryGreen.png" />
+    <Content Include="Content\images\countryGreenDark.png" />
+    <Content Include="Content\images\countryLemon.png" />
+    <Content Include="Content\images\countryLemonDark.png" />
+    <Content Include="Content\images\countryOrange.png" />
+    <Content Include="Content\images\countryOrangeDark.png" />
+    <Content Include="Content\images\countryViolet.png" />
+    <Content Include="Content\images\countryVioletDark.png" />
+    <Content Include="Content\images\DarkTitleBg.png" />
+    <Content Include="Content\images\end_bg.jpg" />
+    <Content Include="Content\images\footer_bg.jpg" />
+    <Content Include="Content\images\globe.png" />
+    <Content Include="Content\images\globeLogo.png" />
+    <Content Include="Content\images\GrayGreenBg.png" />
+    <Content Include="Content\images\header_bg.jpg" />
+    <Content Include="Content\images\icon_facebook.jpg" />
+    <Content Include="Content\images\icon_youtube.png" />
+    <Content Include="Content\images\image1.jpg" />
+    <Content Include="Content\images\image2.jpg" />
+    <Content Include="Content\images\image3.jpg" />
+    <Content Include="Content\images\image4.jpg" />
+    <Content Include="Content\images\indicator.gif" />
+    <Content Include="Content\images\KheMg.png" />
+    <Content Include="Content\images\left_arrow.gif" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo4szerokie.png" />
+    <Content Include="Content\images\logo4szerokie2.png" />
+    <Content Include="Content\images\main_bg.gif" />
+    <Content Include="Content\images\main_top.jpg" />
+    <Content Include="Content\images\menu_bg.jpg" />
+    <Content Include="Content\images\more.gif" />
+    <Content Include="Content\images\photo1.jpg" />
+    <Content Include="Content\images\photo2.jpg" />
+    <Content Include="Content\images\photo3.jpg" />
+    <Content Include="Content\images\photo4.jpg" />
+    <Content Include="Content\images\right_arrow.gif" />
+    <Content Include="Content\images\separate_line.gif" />
+    <Content Include="Content\images\sidebar_top.png" />
+    <Content Include="Content\images\theLogo3.png" />
+    <Content Include="Content\images\theLogo4.png" />
+    <Content Include="Content\images\theLogo5.png" />
+    <Content Include="Content\images\theLogo6.png" />
+    <Content Include="Content\images\tile.png" />
+    <Content Include="Content\images\tileDarkBlue.png" />
+    <Content Include="Content\images\tileDarker.png" />
+    <Content Include="Content\images\tileLighter.png" />
+    <Content Include="Content\images\tileLighter2.png" />
+    <Content Include="Content\images\title.png" />
+    <Content Include="Content\images\title1.gif" />
+    <Content Include="Content\images\title2.gif" />
+    <Content Include="Content\images\title3.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Release Notes - Microsoft.Web.Helpers.txt" />
+    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\NewsDateHelper-edit.js" />
+    <Content Include="Scripts\NewsDateHelper.js" />
+    <Content Include="Scripts\VeJavaScriptIntellisenseHelper.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\AttractionImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\LogOnFast.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\ReviewEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\ReviewDelete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Mobile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Contact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\EditorTemplates\Country.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TouristGuide.Providers\TouristGuide.Providers.csproj">
+      <Project>{EFF48AD1-3F50-4A41-8B7A-AA0B24ACC4B2}</Project>
+      <Name>TouristGuide.Providers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\DisplayTemplates\Attraction.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\GetAttractions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\Partial\Autocomplete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\GetReviews.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\DisplayTemplates\AttractionReview.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\Partial\ShowMore.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\Partial\Autocomplete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\DisplayTemplates\Place.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\GetPlaces.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\DisplayTemplates\Country.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\Partial\Autocomplete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\GetCountries.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attraction\GetReview.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\fonts\SegoeWP-Black.ttf" />
+    <None Include="Content\fonts\SegoeWP-Bold.ttf" />
+    <None Include="Content\fonts\SegoeWP-Light.ttf" />
+    <None Include="Content\fonts\SegoeWP-Semibold.ttf" />
+    <None Include="Content\fonts\SegoeWP-Semilight.ttf" />
+    <None Include="Content\fonts\SegoeWP.ttf" />
+    <None Include="Content\fonts\SegoeWPN-Black.ttf" />
+    <None Include="Content\fonts\SegoeWPN-Bold.ttf" />
+    <None Include="Content\fonts\SegoeWPN-Light.ttf" />
+    <None Include="Content\fonts\SegoeWPN-Semibold.ttf" />
+    <None Include="Content\fonts\SegoeWPN-Semilight.ttf" />
+    <None Include="Content\fonts\SegoeWPN.ttf" />
+    <Content Include="Views\MyAttraction\Index.cshtml" />
+    <Content Include="Views\Home\Map.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>23790</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

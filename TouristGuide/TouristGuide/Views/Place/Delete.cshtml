@@ -1,0 +1,22 @@
+﻿@model TouristGuide.Models.Place
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h3>Are you sure you want to delete this place?</h3>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+<br />
+
+<h4>Description:</h4>
+
+<p>@Html.Raw(Model.Description)</p>
+
+

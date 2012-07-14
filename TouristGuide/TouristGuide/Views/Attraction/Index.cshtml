@@ -1,0 +1,196 @@
+﻿@model IEnumerable<TouristGuide.Models.Attraction>
+@{
+    ViewBag.Title = "Attractions";
+}
+
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.autocomplete.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    //pagger scrolling and filtering
+    var more = true;
+    var loading = false;
+    var count = 20;
+    var start = 0;
+    var loaderImg = null;
+    var country = '';
+    var place = '';
+    var attr = '';
+    var sort = 'rating';
+    var sortDesc = true;
+
+    $(document).ready(function () {
+        $("#country").val('@Request.QueryString["country"]');
+        $("#place").val('@Request.QueryString["place"]');
+        country = $("#country").val();
+        place = $("#place").val();
+        attr = $("#attraction").val();
+
+        $("#sortByRating").click(function () {
+            if (sort == 'rating') {
+                sortDesc = sortDesc ? false : true;
+            }
+            else {
+                $("#sortByRating").text('[avg rating]');
+                $("#sortByLeters").text('alphbetically');
+                sortDesc = true;
+                sort = 'rating';
+            }
+            Sort();
+        });
+
+        $("#sortByLeters").click(function () {
+            if (sort == 'leters') {
+                sortDesc = sortDesc ? false : true;
+            }
+            else {
+                $("#sortByRating").text('avg rating');
+                $("#sortByLeters").text('[alphbetically]');
+                sortDesc = false;
+                sort = 'leters';
+            }
+            Sort();
+        });
+
+        if ($('.post').length < count) {
+            more = false;
+            HideLoading();
+        }
+        else {
+            ShowLoading();
+            $(window).scroll($.proxy(ScrollHandler, this));
+        }
+    });
+
+    function ShowLoading() {
+        loaderImg = $("<div>").addClass("bar").css("clear", "both").css("text-align", "center");
+        var img = $("<img>").attr("src", "/Content/images/indicator.gif");
+        loaderImg.append(img);
+        $("#render").append(loaderImg);
+    }
+
+    function HideLoading() {
+        $(loaderImg).remove();
+    }
+
+    function isScrolledIntoView(elem) {
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + $(elem).height();
+
+        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
+    function ScrollHandler(event) {
+        if (isScrolledIntoView(loaderImg) && loading == false) {
+            GetPage();
+        }
+    }
+
+    function GetPage(event) {
+        if (more == true) {
+            start += count;
+            GetAtt();
+            loading = true;
+        }
+    }
+
+    function GetAtt() {
+        $.ajax({
+            url: '@Url.Action("GetAttractions", "Attraction")',
+            type: 'GET',
+            contentType: 'application/json',
+            data: { country: country, place: place,
+                attraction: attr, start: start, count: count, sort: sort, desc: sortDesc
+            },
+            dataType: 'html',
+            success: $.proxy(Results, this)
+        });
+    }
+
+    function Results(data) {
+        if (data != null && data.trim() != '') {
+            HideLoading();
+            $("#render").append(data);
+            if (data.split('<div class="post attractionsLemonBg">').length - 1 < count) {
+                more = false;
+                HideLoading();
+            }
+            else {
+                ShowLoading();
+                loading = false;
+            }
+        }
+        else {
+            more = false;
+            HideLoading();
+            $("#noResults").attr("style", "");
+        }
+    }
+
+    function Sort() {
+        $(".post").remove();
+
+        more = true;
+        loading = true;
+        start = 0;
+        GetAtt();
+    }
+
+    function Filter() {
+        country = $("#country").val();
+        place = $("#place").val();
+        attr = $("#attraction").val();
+        $("#noResults").attr("style", "display:none;");
+
+        $(".post").remove();
+
+        more = true;
+        loading = true;
+        start = 0;
+        GetAtt();
+    }
+
+</script>
+@Html.Partial("Partial/Autocomplete")
+
+<div class="left border-bottom search-cat">
+    <p>
+@if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+{
+    @Html.ActionLink("Add attraction", "Create")@: |
+}
+    Sort by: 
+        <a id="sortByRating">[avg rating]</a> | <a id="sortByLeters">alphbetically</a>
+    </p>
+</div>
+
+<div class="center border-bottom search-cat">
+@using (Html.BeginForm())
+{
+    <div style="font-size:20px;margin-bottom:20px;">Filter Attractions</div>
+   <span style="font-size:16px;padding-right:5px;padding-left:5px;">Country:</span>
+    @Html.TextBox("country") 
+	<span style="font-size:16px;padding-right:5px;padding-left:5px;">City/Region:</span>
+    @Html.TextBox("place") 
+   <span style="font-size:16px;padding-right:5px;padding-left:5px;">Attraction:</span>
+   @Html.TextBox("attraction")
+   <input type="submit" value="Filter" onclick="Filter(); return false;" style="margin:20px;color:Gray;"/>
+}
+</div>
+
+@Html.DisplayFor(m => m)
+
+<div id="noResults" class="attractionsLemonBg"
+@if (Model == null || (Model != null && Model.Count() == 0))
+{
+    @:>
+}
+else
+{ 
+    @: style="display:none;">
+}
+    <h1 style="color:#9BB45E;" class="attractionTitleDarkLemonBg">No results found.</h1>
+</div>

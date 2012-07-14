@@ -1,0 +1,11 @@
+﻿@model TouristGuide.Models.Country
+           
+<div class="countryBar" name="@Model.ID">
+    <span style="color: White; font-size: 20px;">@Model.Name</span> 
+@if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin")) {
+ @:<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) @:|
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
+ @:</div>
+} 
+</div>
