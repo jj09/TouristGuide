@@ -11,9 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Providers", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist_Guide.WP7", "TouristGuide.WP7\Tourist_Guide.WP7.csproj", "{15AE55A5-E75F-4EB2-B716-DAEF9B03024E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Service", "TouristGuide.Service\TouristGuide.Service.csproj", "{8C4FB9CD-0F5B-41BF-92B9-C389F76720A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Core", "TouristGuide.Core\TouristGuide.Core.csproj", "{473ED9EE-B028-410E-801F-E429C5E6B58F}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 8
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs28
 		SccLocalPath0 = .
@@ -32,6 +36,12 @@ Global
 		SccProjectUniqueName5 = TouristGuide\\TouristGuide.csproj
 		SccProjectName5 = TouristGuide
 		SccLocalPath5 = TouristGuide
+		SccProjectUniqueName6 = TouristGuide.Service\\TouristGuide.Service.csproj
+		SccProjectName6 = TouristGuide.Service
+		SccLocalPath6 = TouristGuide.Service
+		SccProjectUniqueName7 = TouristGuide.Core\\TouristGuide.Core.csproj
+		SccProjectName7 = TouristGuide.Core
+		SccLocalPath7 = TouristGuide.Core
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +70,14 @@ Global
 		{15AE55A5-E75F-4EB2-B716-DAEF9B03024E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15AE55A5-E75F-4EB2-B716-DAEF9B03024E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15AE55A5-E75F-4EB2-B716-DAEF9B03024E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8C4FB9CD-0F5B-41BF-92B9-C389F76720A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C4FB9CD-0F5B-41BF-92B9-C389F76720A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C4FB9CD-0F5B-41BF-92B9-C389F76720A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C4FB9CD-0F5B-41BF-92B9-C389F76720A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{473ED9EE-B028-410E-801F-E429C5E6B58F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{473ED9EE-B028-410E-801F-E429C5E6B58F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{473ED9EE-B028-410E-801F-E429C5E6B58F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{473ED9EE-B028-410E-801F-E429C5E6B58F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
