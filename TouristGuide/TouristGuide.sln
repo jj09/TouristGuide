@@ -9,7 +9,7 @@ Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "TouristGuide.Azure", "Touri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Providers", "TouristGuide.Providers\TouristGuide.Providers.csproj", "{EFF48AD1-3F50-4A41-8B7A-AA0B24ACC4B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist_Guide.WP7", "TouristGuide.WP7\Tourist_Guide.WP7.csproj", "{15AE55A5-E75F-4EB2-B716-DAEF9B03024E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist_Guide.WP7-Owoc", "TouristGuide.WP7\Tourist_Guide.WP7-Owoc.csproj", "{15AE55A5-E75F-4EB2-B716-DAEF9B03024E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Service", "TouristGuide.Service\TouristGuide.Service.csproj", "{8C4FB9CD-0F5B-41BF-92B9-C389F76720A4}"
 EndProject
@@ -81,5 +81,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
 	EndGlobalSection
 EndGlobal

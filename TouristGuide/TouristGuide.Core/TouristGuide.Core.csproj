@@ -42,6 +42,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,17 +57,19 @@
     <Compile Include="Models\AttractionType.cs" />
     <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Repository\AttractionRepository.cs" />
     <Compile Include="Repository\Contract\ITouristGuideDB.cs" />
     <Compile Include="Models\MyAttraction.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Place.cs" />
     <Compile Include="Models\PushPinModel.cs" />
+    <Compile Include="Repository\Contract\IAttractionRepository.cs" />
     <Compile Include="Repository\TouristGuideDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
