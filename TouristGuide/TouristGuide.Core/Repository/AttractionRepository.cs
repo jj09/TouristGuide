@@ -43,7 +43,7 @@ namespace TouristGuide.Core.Repository
             //    AvgRating = x.AvgRating.HasValue ? Math.Round(x.AvgRating.Value, 2) : 0.0
             //});
 
-            return attrs.ToList();
+            return attrs;
         }
     }
 }

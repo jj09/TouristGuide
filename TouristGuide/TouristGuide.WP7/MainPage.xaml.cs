@@ -10,63 +10,28 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using System.Runtime.Serialization.Json;
 
-namespace First_WPA
+namespace TouristGuide.WP7
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        WebClient clientLogin = new WebClient();
-
+        // Constructor
         public MainPage()
         {
             InitializeComponent();
+
+            // Set the data context of the listbox control to the sample data
+            DataContext = App.ViewModel;
+            this.Loaded += new RoutedEventHandler(MainPage_Loaded);
         }
-        private void Button_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+
+        // Load data for the ViewModel Items
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            Button b = sender as Button;
-
-            int col = Grid.GetColumn(b);
-            int row = Grid.GetRow(b);
-
-            if (col == row)
+            if (!App.ViewModel.IsDataLoaded)
             {
-                Grid.SetColumn(b, ++col % 2);
-            }
-            else
-            {
-                Grid.SetRow(b, ++row % 2);
+                App.ViewModel.LoadData();
             }
         }
-
-        private void btnSignIn_Click(object sender, RoutedEventArgs e)
-        {
-            clientLogin.OpenReadCompleted += new OpenReadCompletedEventHandler(clientLogin_OpenReadCompleted);
-            clientLogin.OpenReadAsync(new Uri("http://localhost:23790/WebService/MobileLogOn?user=" + tbLogin.Text + "&pass=" + passwordBox1.Password), UriKind.Absolute);
-            
-            //string urlWIthData = string.Format("/Main.xaml?name={0}", tbLogin.Text);
-            //this.NavigationService.Navigate(new Uri(urlWIthData, UriKind.Relative));
-
-        }
-
-        void clientLogin_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
-        {
-            string userId = e.Result.ToString();
-            if(Int32.Parse(userId)!=-1)
-                NavigationService.Navigate(new Uri(string.Format("/PanoramicMain.xaml"), UriKind.Relative));
-            //var serializer = new DataContractJsonSerializer(typeof(Attraction));
-            
-        }
-
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Nie mam czasu!! " );
-        }
-
-       
-
-        
-
-       
     }
 }

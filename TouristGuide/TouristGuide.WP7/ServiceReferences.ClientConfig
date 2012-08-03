@@ -1,16 +1,1 @@
-﻿<configuration>
-    <system.serviceModel>
-        <bindings>
-            <basicHttpBinding>
-                <binding name="DictServiceSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
-                    <security mode="None" />
-                </binding>
-            </basicHttpBinding>
-        </bindings>
-        <client>
-            <endpoint address="http://services.aonaware.com/DictService/DictService.asmx"
-                binding="basicHttpBinding" bindingConfiguration="DictServiceSoap"
-                contract="ServiceReference1.DictServiceSoap" name="DictServiceSoap" />
-        </client>
-    </system.serviceModel>
-</configuration>
+﻿<configuration />

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TouristGuide.Core.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TouristGuide.Core.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfAttraction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attraction" nillable="true" type="tns:Attraction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttraction" nillable="true" type="tns:ArrayOfAttraction" />
+  <xs:complexType name="Attraction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="tns:Address" />
+      <xs:element minOccurs="0" name="AttractionType" nillable="true" type="tns:AttractionType" />
+      <xs:element minOccurs="0" name="AvgRating" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Coordinates" nillable="true" type="tns:Coordinates" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfAttractionImage" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reviews" nillable="true" type="tns:ArrayOfAttractionReview" />
+      <xs:element minOccurs="0" name="Video" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Attraction" nillable="true" type="tns:Attraction" />
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BuildingNumber" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Region" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Address" nillable="true" type="tns:Address" />
+  <xs:complexType name="Country">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Coordinates" nillable="true" type="tns:Coordinates" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Country" nillable="true" type="tns:Country" />
+  <xs:complexType name="Coordinates">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Latitude" type="xs:double" />
+      <xs:element minOccurs="0" name="Longitude" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Coordinates" nillable="true" type="tns:Coordinates" />
+  <xs:complexType name="AttractionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttractionType" nillable="true" type="tns:AttractionType" />
+  <xs:complexType name="ArrayOfAttractionImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttractionImage" nillable="true" type="tns:AttractionImage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttractionImage" nillable="true" type="tns:ArrayOfAttractionImage" />
+  <xs:complexType name="AttractionImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttractionID" type="xs:int" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttractionImage" nillable="true" type="tns:AttractionImage" />
+  <xs:complexType name="ArrayOfAttractionReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttractionReview" nillable="true" type="tns:AttractionReview" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttractionReview" nillable="true" type="tns:ArrayOfAttractionReview" />
+  <xs:complexType name="AttractionReview">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttractionID" type="xs:int" />
+      <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Rating" type="xs:int" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttractionReview" nillable="true" type="tns:AttractionReview" />
+</xs:schema>
