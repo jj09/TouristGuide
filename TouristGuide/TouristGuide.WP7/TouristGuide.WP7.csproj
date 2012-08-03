@@ -72,11 +72,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\WPService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\AttractionViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -98,19 +93,6 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <None Include="Service References\WPService\service.wsdl" />
-    <None Include="Service References\WPService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WPService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WPService\TouristGuide.Core.Models.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WPService\TouristGuide.WP7.WPService.Attraction.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -121,19 +103,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="PanoramaBackground.png" />
-    <None Include="Service References\WPService\configuration91.svcinfo" />
-    <None Include="Service References\WPService\configuration.svcinfo" />
-    <None Include="Service References\WPService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\WPService\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using TouristGuide.Core.Models;
 using System.Text;
+using System.ServiceModel.Web;
 
 namespace TouristGuide.Service
 {
@@ -12,6 +13,9 @@ namespace TouristGuide.Service
     public interface IWPService
     {
         [OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
         List<Attraction> GetAttractions(string place, int start, int count);
+
+        string Name();
     }
 }
