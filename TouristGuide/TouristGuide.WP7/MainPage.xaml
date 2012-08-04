@@ -14,34 +14,77 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
- 
+
         <!--Panorama control-->
         <controls:Panorama Title="tourist guide">
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="PanoramaBackground.png"/>
             </controls:Panorama.Background>
- 
+
             <!--Panorama item one-->
             <controls:PanoramaItem Header="attractions">
                 <!--Double line list with text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Attractions}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,17" Width="432" Height="78">
-                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <TextBlock Text="{Binding Country}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <Grid>
+                    <TextBox Width="280" 
+                             Height="70" 
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Left"
+                             Name="searchTextBox"/>
+                    <Button Content="Search" 
+                            Width="150" 
+                            Height="70" 
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Click="Search_Click"/>
+                    <ListBox Margin="0,70,-12,0" ItemsSource="{Binding Attractions}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
+                                    <Rectangle Height="100" Width="100" Fill="#FFE5001b" Margin="12,0,9,0"/>
+                                    <StackPanel Margin="0,0,0,17" Width="432" Height="78">
+                                        <HyperlinkButton Content="{Binding Name}"                                                         
+                                                         
+                                                         NavigateUri="{Binding Id, StringFormat='/TouristGuide.WP7;component/AttractionPage.xaml?id={0}'}" />
+                                            <!--Style="{StaticResource PhoneTextExtraLargeStyle}"-->
+                                        <TextBlock Text="{Binding Country}" 
+                                                    TextWrapping="Wrap" 
+                                                    Margin="12,-6,12,0" 
+                                                    Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Canvas 
+                        Width="400"
+                        Height="400"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Name="infoCanvas"
+                        Visibility="Visible"
+                        
+                        >
+                        <TextBox 
+                            Text="{Binding InfoText}"
+                            Foreground="White" 
+                            Background="Transparent"
+                            BorderThickness="0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Width="400"
+                            TextAlignment="Center"
+                            Margin="0,100,0,0"
+                            />
+                    </Canvas>
+                </Grid>
             </controls:PanoramaItem>
- 
+
             <!--Panorama item two-->
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
-            <controls:PanoramaItem Header="second item">
+            <controls:PanoramaItem Header="map">
                 <!--Double line list with image placeholder and text wrapping-->
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>
@@ -49,7 +92,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
                                 <!--Replace rectangle with image-->
                                 <Rectangle Height="100" Width="100" Fill="#FFE5001b" Margin="12,0,9,0"/>
-                                <StackPanel Width="311">                                    
+                                <StackPanel Width="311">
                                     <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                                     <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
@@ -61,7 +104,7 @@
 
             <!--Panorama item three-->
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
-            <controls:PanoramaItem Header="third item">
+            <controls:PanoramaItem Header="settings">
                 <!--Double line list with image placeholder and text wrapping-->
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>

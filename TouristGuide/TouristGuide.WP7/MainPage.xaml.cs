@@ -32,6 +32,13 @@ namespace TouristGuide.WP7
             {
                 App.ViewModel.LoadData();
             }
+
+            infoCanvas.Visibility = App.ViewModel.Attractions.Count > 0 ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            App.ViewModel.Search(searchTextBox.Text.Trim());            
         }
     }
 }

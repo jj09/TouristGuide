@@ -24,9 +24,19 @@ namespace TouristGuide.Service
 			this.attractionRepository = attractionRepository;
 		}
 
-		public List<Attraction> GetAttractions(string place, int start, int count)
+		public IQueryable<Attraction> GetAttractions(string place, int start, int count)
 		{
-			return attractionRepository.GetAttractions(place, start, count).OrderByDescending(x => x.AvgRating).ToList();
+			return attractionRepository.GetAttractions(place, start, count).OrderByDescending(x => x.AvgRating);
 		}
+
+        public IQueryable<Attraction> SearchAttractions(string inputText, int start, int count)
+        {
+            return attractionRepository.SearchAttractions(inputText, start, count);
+        }
+
+        public Attraction GetAttractionById(int id)
+        {
+            return attractionRepository.GetAttractionById(id);
+        }
 	}
 }

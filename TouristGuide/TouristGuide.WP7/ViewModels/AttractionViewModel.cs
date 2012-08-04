@@ -15,11 +15,24 @@ namespace TouristGuide.WP7.ViewModels
 {
     public class AttractionViewModel : INotifyPropertyChanged
     {
+        private int _id;
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (value != _id)
+                {
+                    _id = value;
+                    NotifyPropertyChanged("Id");
+                }
+            }
+        }
+
         private string _name;
-        /// <summary>
-        /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
-        /// </summary>
-        /// <returns></returns>
         public string Name
         {
             get
@@ -37,10 +50,6 @@ namespace TouristGuide.WP7.ViewModels
         }
 
         private string _country;
-        /// <summary>
-        /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
-        /// </summary>
-        /// <returns></returns>
         public string Country
         {
             get
@@ -55,6 +64,39 @@ namespace TouristGuide.WP7.ViewModels
                     NotifyPropertyChanged("Country");
                 }
             }
+        }
+
+        private string _description;
+        public string Description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                if (value != _description)
+                {
+                    _description = value;
+                    NotifyPropertyChanged("Description");
+                }
+            }
+        }
+
+        public void LoadData(int id)
+        {
+            WPServiceClient WPServiceClient = new WPServiceClient();            
+            WPServiceClient.GetAttractionByIdCompleted += new EventHandler<GetAttractionByIdCompletedEventArgs>(WPServiceClient_GetAttractionByIdCompleted);
+            WPServiceClient.GetAttractionByIdAsync(id);
+        }
+
+        void WPServiceClient_GetAttractionByIdCompleted(object sender, GetAttractionByIdCompletedEventArgs e)
+        {
+            var attraction = e.Result;
+            Id = attraction.ID;
+            Name = attraction.Name;
+            Country = attraction.Country.Name;
+            Description = attraction.Description;
         }
         
         public event PropertyChangedEventHandler PropertyChanged;

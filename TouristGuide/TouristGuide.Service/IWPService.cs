@@ -13,7 +13,12 @@ namespace TouristGuide.Service
     public interface IWPService
     {
         [OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
-        List<Attraction> GetAttractions(string place, int start, int count);
+        IQueryable<Attraction> GetAttractions(string place, int start, int count);
+
+        [OperationContract]
+        IQueryable<Attraction> SearchAttractions(string inputText, int start, int count);
+
+        [OperationContract]
+        Attraction GetAttractionById(int id);
     }
 }

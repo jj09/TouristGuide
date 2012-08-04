@@ -7,7 +7,7 @@ using TouristGuide.Core.Models;
 
 namespace TouristGuide.Core.Repository
 {
-    public class AttractionRepository : TouristGuide.Core.Repository.IAttractionRepository
+    public class AttractionRepository : IAttractionRepository
     {
         private readonly ITouristGuideDB context;
 
@@ -44,6 +44,30 @@ namespace TouristGuide.Core.Repository
             //});
 
             return attrs;
+        }
+
+        public IQueryable<Attraction> SearchAttractions(string inputText, int start, int count)
+        {
+            IQueryable<Attraction> attractions = context.Attraction
+                .Include(c => c.Coordinates)
+                .Include(c => c.Country)
+                .Include(a => a.Address)
+                .Where(x => x.Name.ToLower().Contains(inputText) || x.Country.Name.ToLower().Contains(inputText) || x.Address.City.ToLower().Contains(inputText));
+
+            IQueryable<Attraction> attrs = attractions.OrderByDescending(x => x.AvgRating).Skip(start).Take(count);
+
+            return attrs;
+        }
+
+        public Attraction GetAttractionById(int id)
+        {
+            return context.Attraction
+                .Include(x => x.Address)
+                .Include(x => x.Coordinates)
+                .Include(x => x.Country)
+                .Include(x => x.Images)
+                .Include(x => x.Reviews)
+                .SingleOrDefault(x => x.ID == id);
         }
     }
 }
