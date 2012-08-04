@@ -98,6 +98,7 @@ namespace TouristGuide.WP7
         void WPServiceClient_GetAttractionsCompleted(object sender, GetAttractionsCompletedEventArgs e)
         {
             var attractions = e.Result;
+
             foreach (var attraction in attractions)
             {
                 Attractions.Add(new AttractionViewModel { Name = attraction.Name, Country = attraction.Country.Name });
