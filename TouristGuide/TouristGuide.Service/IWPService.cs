@@ -15,7 +15,5 @@ namespace TouristGuide.Service
         [OperationContract]
         [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
         List<Attraction> GetAttractions(string place, int start, int count);
-
-        string Name();
     }
 }
