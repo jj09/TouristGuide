@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Core", "TouristGuide.Core\TouristGuide.Core.csproj", "{473ED9EE-B028-410E-801F-E429C5E6B58F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.WP7", "TouristGuide.WP7\TouristGuide.WP7.csproj", "{475EBA06-8948-4C95-A82D-35858B412AB6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{735DAE3C-2B0A-4D81-874A-5EFF0BD9D650} = {735DAE3C-2B0A-4D81-874A-5EFF0BD9D650}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Service", "TouristGuide.Service\TouristGuide.Service.csproj", "{735DAE3C-2B0A-4D81-874A-5EFF0BD9D650}"
 EndProject
