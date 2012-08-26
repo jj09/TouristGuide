@@ -35,6 +35,7 @@ namespace TouristGuide.WP7
                 int id = 0;
                 int.TryParse(idString, out id);
                 viewModel.LoadData(id);
+                //webBrowserDescription.NavigateToString(viewModel.Description);
             }
             
         }

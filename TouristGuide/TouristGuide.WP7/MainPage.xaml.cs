@@ -38,7 +38,7 @@ namespace TouristGuide.WP7
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            App.ViewModel.Search(searchTextBox.Text.Trim());            
+            App.ViewModel.Search(searchTextBox.Text.Trim());
         }
     }
 }
