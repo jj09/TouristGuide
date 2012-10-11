@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="94a4829e-4af9-4b19-8d4a-aa78b1a52526" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:4336/WPService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WPService.xsd" MetadataType="Schema" ID="8f80b6c9-a4db-4128-a313-3d593dfd32ea" SourceId="1" SourceUrl="http://localhost:4336/WPService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WPService.wsdl" MetadataType="Wsdl" ID="12ec33dd-a92e-4589-b3fa-4b45c3d57a56" SourceId="1" SourceUrl="http://localhost:4336/WPService.svc?wsdl" />
+    <MetadataFile FileName="WPService1.xsd" MetadataType="Schema" ID="42590e0c-c504-4352-8a77-341dbe2b7955" SourceId="1" SourceUrl="http://localhost:4336/WPService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WPService.disco" MetadataType="Disco" ID="07f3f372-9ca5-4820-9288-50c6588d70be" SourceId="1" SourceUrl="http://localhost:4336/WPService.svc?disco" />
+    <MetadataFile FileName="WPService2.xsd" MetadataType="Schema" ID="9e2b8d6b-92ac-4d55-8646-b1d05e6faebc" SourceId="1" SourceUrl="http://localhost:4336/WPService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

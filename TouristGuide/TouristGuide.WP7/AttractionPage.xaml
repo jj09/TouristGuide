@@ -7,41 +7,36 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:cxi="clr-namespace:TouristGuide.WP7.Helpers;assembly=TouristGuide.WP7"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps">
 
-    <!--LayoutRoot contains the root grid where all other page content is placed-->
-    <Grid x:Name="LayoutRoot">
-        <controls:Panorama Title="attraction">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <!--Panorama item one-->
-            <controls:PanoramaItem Header="{Binding Name}">
-                <StackPanel>
-                    <TextBlock Text="{Binding Country}"/>
-                    <ScrollViewer>
-                        <phone:WebBrowser cxi:WebBrowserHelper.Html="{Binding Description}"/>
-                        <!--<TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>-->
-                    </ScrollViewer>
-                </StackPanel>
-            </controls:PanoramaItem>
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="TOURIST GUIDE" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="{Binding Name}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <Button Content="Map" Margin="9,47,0,0" Click="Button_Click" />
+        </StackPanel>
 
-            <!--Panorama item two-->
-            <controls:PanoramaItem Header="location">
-                <Grid/>
-            </controls:PanoramaItem>
-
-            <!--Panorama item two-->
-            <controls:PanoramaItem Header="reviews">
-                <Grid/>
-            </controls:PanoramaItem>
-            
-        </controls:Panorama>
+        <!--ContentPanel - place additional content here-->
+        <StackPanel Margin="12,157,0,28">
+            <TextBlock Text="{Binding Country}"/>
+            <ScrollViewer>
+                <phone:WebBrowser cxi:WebBrowserHelper.Html="{Binding Description}"/>
+                <!--<TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>-->
+            </ScrollViewer>
+        </StackPanel>
     </Grid>
 
     <!--Panorama-based applications should not show an ApplicationBar-->

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -11,6 +12,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using TouristGuide.WP7.ViewModels;
+using System.Device.Location;
+using Microsoft.Phone.Controls.Maps;
 
 namespace TouristGuide.WP7
 {
@@ -37,7 +40,11 @@ namespace TouristGuide.WP7
                 viewModel.LoadData(id);
                 //webBrowserDescription.NavigateToString(viewModel.Description);
             }
-            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/TouristGuide.WP7;component/AttractionMapPage.xaml?id=" + viewModel.Id, UriKind.Relative));
         }
     }
 }

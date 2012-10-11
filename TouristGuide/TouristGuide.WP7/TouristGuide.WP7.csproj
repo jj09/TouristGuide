@@ -54,7 +54,9 @@
   <ItemGroup>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls" />
+    <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
@@ -68,6 +70,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AttractionMapPage.xaml.cs">
+      <DependentUpon>AttractionMapPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AttractionPage.xaml.cs">
       <DependentUpon>AttractionPage.xaml</DependentUpon>
     </Compile>
@@ -76,6 +81,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\PushpinModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\WPService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -90,6 +96,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="AttractionMapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AttractionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </DesignData>
+    <Page Include="Resources\Styles\DefaultStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
@@ -116,6 +130,18 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Icons\ApplicationBar\Directions.png" />
+    <Resource Include="Resources\Icons\ApplicationBar\Location.png" />
+    <Resource Include="Resources\Icons\ApplicationBar\Mode.png" />
+    <Resource Include="Resources\Icons\ApplicationBar\Route.png" />
+    <Resource Include="Resources\Icons\Route\SearchBlack.png" />
+    <Resource Include="Resources\Icons\Route\SearchWhite.png" />
+    <Resource Include="Resources\Icons\Zoom\ZoomIn_Black.png" />
+    <Resource Include="Resources\Icons\Zoom\ZoomIn_White.png" />
+    <Resource Include="Resources\Icons\Zoom\ZoomOut_Black.png" />
+    <Resource Include="Resources\Icons\Zoom\ZoomOut_White.png" />
+    <Resource Include="Resources\Icons\Pushpins\PushpinHouse.png" />
+    <Resource Include="Resources\Icons\Pushpins\PushpinLocation.png" />
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\WPService\WPService.wsdl" />
     <None Include="Service References\WPService\WPService.xsd">
@@ -144,6 +170,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WPService\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

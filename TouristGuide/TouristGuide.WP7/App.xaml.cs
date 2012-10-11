@@ -19,6 +19,8 @@ namespace TouristGuide.WP7
     {
         private static MainViewModel viewModel = null;
 
+        internal const string Id = "Agf4uaMlhzn7cU1bZ2n1jF_4YtUQvwiM_Y3lZvFDLQtYUbjAkNQcNvbETKJ6hmgG";
+
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
