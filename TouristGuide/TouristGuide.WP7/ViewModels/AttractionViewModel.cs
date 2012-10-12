@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -66,6 +68,74 @@ namespace TouristGuide.WP7.ViewModels
             }
         }
 
+        private string _region;
+        public string Region
+        {
+            get
+            {
+                return _region;
+            }
+            set
+            {
+                if (value != _region)
+                {
+                    _region = value;
+                    NotifyPropertyChanged("Region");
+                }
+            }
+        }
+
+        private string _city;
+        public string City
+        {
+            get
+            {
+                return _city;
+            }
+            set
+            {
+                if (value != _city)
+                {
+                    _city = value;
+                    NotifyPropertyChanged("City");
+                }
+            }
+        }
+
+        private string _street;
+        public string Street
+        {
+            get
+            {
+                return _street;
+            }
+            set
+            {
+                if (value != _street)
+                {
+                    _street = value;
+                    NotifyPropertyChanged("Street");
+                }
+            }
+        }
+
+        private int? _buildingNumber;
+        public int? BuildingNumber
+        {
+            get
+            {
+                return _buildingNumber;
+            }
+            set
+            {
+                if (value != _buildingNumber)
+                {
+                    _buildingNumber = value;
+                    NotifyPropertyChanged("BuildingNumber");
+                }
+            }
+        }
+
         private string _description;
         public string Description
         {
@@ -83,6 +153,20 @@ namespace TouristGuide.WP7.ViewModels
             }
         }
 
+        private ObservableCollection<AttractionReview> _reviews;
+        public ObservableCollection<AttractionReview> Reviews
+        {
+            get { return _reviews; }
+            set
+            {
+                if (value != _reviews)
+                {
+                    _reviews = value;
+                    NotifyPropertyChanged("Reviews");
+                }
+            }
+        }
+
         public void LoadData(int id)
         {
             WPServiceClient WPServiceClient = new WPServiceClient();            
@@ -96,7 +180,12 @@ namespace TouristGuide.WP7.ViewModels
             Id = attraction.ID;
             Name = attraction.Name;
             Country = attraction.Country.Name;
+            Region = attraction.Address.Region;
+            City = attraction.Address.City;
+            Street = attraction.Address.Street;
+            BuildingNumber = attraction.Address.BuildingNumber;
             Description = attraction.Description;
+            Reviews = attraction.Reviews;
         }
         
         public event PropertyChangedEventHandler PropertyChanged;

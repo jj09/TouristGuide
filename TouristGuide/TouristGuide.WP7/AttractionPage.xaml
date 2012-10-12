@@ -17,26 +17,73 @@
     shell:SystemTray.IsVisible="False" xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="TOURIST GUIDE" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding Name}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-            <Button Content="Map" Margin="9,47,0,0" Click="Button_Click" />
-        </StackPanel>
+        <!--Panorama control-->
+        <controls:Pivot Title="{Binding Name}">
+            
+            <!--Panorama item one-->
+            <controls:PivotItem Header="info">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-        <!--ContentPanel - place additional content here-->
-        <StackPanel Margin="12,157,0,28">
-            <TextBlock Text="{Binding Country}"/>
-            <ScrollViewer>
-                <phone:WebBrowser cxi:WebBrowserHelper.Html="{Binding Description}"/>
-                <!--<TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>-->
-            </ScrollViewer>
-        </StackPanel>
+                    <!--ContentPanel - place additional content here-->
+                    <StackPanel Margin="12,0,0,28">
+                        <TextBlock Text="Country: " Foreground="Gray"/>
+                        <TextBlock Text="{Binding Country}" Margin="10,10,0,10"/>
+                        <TextBlock Text="Region: " Foreground="Gray"/>
+                        <TextBlock Text="{Binding Region}" Margin="10,10,0,10"/>
+                        <TextBlock Text="Address: " Foreground="Gray"/>
+                        <StackPanel Orientation="Horizontal" Margin="10,10,0,10">
+                            <TextBlock Text="{Binding Street}" />
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding BuildingNumber}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <phone:WebBrowser cxi:WebBrowserHelper.Html="{Binding Description, Mode=TwoWay}" Name="webBrowserDescription" Margin="12,56,0,448" Grid.Row="1" Background="Black" Foreground="White" />
+                    <Button Content="Map" Margin="21,157,0,571" Click="Button_Click" Grid.RowSpan="2" />
+                </Grid>
+            </controls:PivotItem>
+
+            <!--Panorama item two-->
+            <controls:PivotItem Header="reviews">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ListBox 
+                        Name="ReviewsListBox"
+                        SelectionMode="Multiple"
+                        DataContext="{Binding Reviews, Mode=TwoWay}"
+                        ItemsSource="{Binding}"
+                        >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="White" BorderThickness="2" Margin="10">
+                                    <StackPanel Margin="10" Width="400">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Author}" Foreground="Gray" />
+                                            <TextBlock Text=", " Foreground="Gray" />
+                                            <TextBlock FontStyle="Italic" Text="{Binding Date}" Foreground="Gray" />
+                                            <TextBlock Text=": " Foreground="Gray" />
+                                            <TextBlock FontWeight="Bold" Text="{Binding Rating}" Foreground="Gray" />
+                                            <TextBlock Text="/10 " Foreground="Gray" />
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
+
+                                    </StackPanel>
+                                </Border>
+
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
     </Grid>
 
     <!--Panorama-based applications should not show an ApplicationBar-->

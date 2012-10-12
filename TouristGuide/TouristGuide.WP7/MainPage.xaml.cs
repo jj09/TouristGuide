@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using TouristGuide.WP7.ViewModels;
 
 namespace TouristGuide.WP7
 {
@@ -39,6 +40,15 @@ namespace TouristGuide.WP7
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             App.ViewModel.Search(searchTextBox.Text.Trim());
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((sender as ListBox).SelectedIndex == -1)
+                return;
+
+            int itemId = ((sender as ListBox).SelectedItem as AttractionViewModel).Id;
+            NavigationService.Navigate(new Uri(string.Format("/TouristGuide.WP7;component/AttractionPage.xaml?id={0}",itemId),UriKind.Relative));
         }
     }
 }

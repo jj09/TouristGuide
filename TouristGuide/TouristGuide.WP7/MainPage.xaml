@@ -18,13 +18,13 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
 
         <!--Panorama control-->
-        <controls:Panorama Title="tourist guide">
-            <controls:Panorama.Background>
+        <controls:Pivot Title="TOURIST GUIDE">
+            <!--<controls:Panorama.Background>
                 <ImageBrush ImageSource="PanoramaBackground.png"/>
-            </controls:Panorama.Background>
+            </controls:Panorama.Background>-->
 
             <!--Panorama item one-->
-            <controls:PanoramaItem Header="attractions">
+            <controls:PivotItem Header="attractions">
                 <!--Double line list with text wrapping-->
                 <Grid>
                     <TextBox Width="280" 
@@ -38,23 +38,22 @@
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"
                             Click="Search_Click"/>
-                    <ListBox Margin="0,70,-12,0" ItemsSource="{Binding Attractions}">
+                    <ListBox Margin="0,70,-12,0" ItemsSource="{Binding Attractions}" SelectionChanged="ListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
-                                    <Rectangle Height="100" Width="100" Fill="#FFE5001b" Margin="12,0,9,0"/>
-                                    <StackPanel Margin="0,0,0,17" Width="432" Height="78">
-                                        <HyperlinkButton Content="{Binding Name}"                                                         
-                                                         
-                                                         NavigateUri="{Binding Id, StringFormat='/TouristGuide.WP7;component/AttractionPage.xaml?id={0}'}" />
+                                <Border BorderThickness="2" BorderBrush="Gray" Margin="10,10,10,10">
+                                    <StackPanel Margin="10,10,10,10" Width="432" Height="78">
+                                            <TextBlock Text="{Binding Name}" FontSize="28" />
                                             <!--Style="{StaticResource PhoneTextExtraLargeStyle}"-->
-                                        <TextBlock Text="{Binding Country}" 
+                                            <StackPanel Orientation="Horizontal">
+                                                <Rectangle Height="30" Width="50" Fill="#FFE5001b" Margin="12,0,9,0"/>
+                                                <TextBlock Text="{Binding Country}" 
                                                     TextWrapping="Wrap" 
-                                                    Margin="12,-6,12,0" 
+                                                    Margin="12,0,12,0" 
                                                     Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                            
-                                    </StackPanel>
-                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -64,8 +63,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Name="infoCanvas"
-                        Visibility="Visible"
-                        
+                        Visibility="Visible"                        
                         >
                         <TextBox 
                             Text="{Binding InfoText}"
@@ -80,11 +78,11 @@
                             />
                     </Canvas>
                 </Grid>
-            </controls:PanoramaItem>
+            </controls:PivotItem>
 
             <!--Panorama item two-->
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
-            <controls:PanoramaItem Header="map">
+            <controls:PivotItem Header="map">
                 <!--Double line list with image placeholder and text wrapping-->
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>
@@ -100,11 +98,11 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </controls:PanoramaItem>
+            </controls:PivotItem>
 
             <!--Panorama item three-->
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
-            <controls:PanoramaItem Header="settings">
+            <controls:PivotItem Header="settings">
                 <!--Double line list with image placeholder and text wrapping-->
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>
@@ -120,7 +118,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </controls:PanoramaItem>
-        </controls:Panorama>
+            </controls:PivotItem>
+        </controls:Pivot>
     </Grid>
 </phone:PhoneApplicationPage>
