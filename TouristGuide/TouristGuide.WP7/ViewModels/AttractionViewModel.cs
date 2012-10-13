@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -51,6 +52,8 @@ namespace TouristGuide.WP7.ViewModels
             }
         }
 
+        public string ImageUri { get; set; }
+
         private string _country;
         public string Country
         {
@@ -67,6 +70,8 @@ namespace TouristGuide.WP7.ViewModels
                 }
             }
         }
+
+        public string CountryFlagUri { get; set; }
 
         private string _region;
         public string Region
@@ -180,11 +185,12 @@ namespace TouristGuide.WP7.ViewModels
             Id = attraction.ID;
             Name = attraction.Name;
             Country = attraction.Country.Name;
+            CountryFlagUri = "..\\Resources\\Icons\\Flags\\" + attraction.Country.Name + ".png";
             Region = attraction.Address.Region;
             City = attraction.Address.City;
             Street = attraction.Address.Street;
             BuildingNumber = attraction.Address.BuildingNumber;
-            Description = attraction.Description;
+            Description = Regex.Replace(attraction.Description, "<.*?>", string.Empty);
             Reviews = attraction.Reviews;
         }
         

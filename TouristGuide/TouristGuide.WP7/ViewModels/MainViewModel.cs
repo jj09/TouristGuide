@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -104,9 +105,13 @@ namespace TouristGuide.WP7
             Attractions.Clear();
             foreach (var attraction in observableCollection)
             {
-                Attractions.Add(new AttractionViewModel { Id = attraction.ID, 
+                Attractions.Add(new AttractionViewModel 
+                { 
+                    Id = attraction.ID, 
                     Name = attraction.Name, 
-                    Country = attraction.Country.Name
+                    Country = attraction.Country.Name,
+                    CountryFlagUri = "..\\Resources\\Icons\\Flags\\" + attraction.Country.Name + ".png",
+                    ImageUri = attraction.Images.Count>0 ? "http://pm.studentlive.pl/Content/AttractionImages/" + attraction.Images.First().FileName : ""
                 });
             }
             InfoText = Attractions.Count > 0 ? "" : "No attractions found.";

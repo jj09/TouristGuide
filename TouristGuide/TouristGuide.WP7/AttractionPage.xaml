@@ -20,31 +20,39 @@
 
         <!--Panorama control-->
         <controls:Pivot Title="{Binding Name}">
-            
+
             <!--Panorama item one-->
             <controls:PivotItem Header="info">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <!--ContentPanel - place additional content here-->
-                    <StackPanel Margin="12,0,0,28">
-                        <TextBlock Text="Country: " Foreground="Gray"/>
-                        <TextBlock Text="{Binding Country}" Margin="10,10,0,10"/>
-                        <TextBlock Text="Region: " Foreground="Gray"/>
-                        <TextBlock Text="{Binding Region}" Margin="10,10,0,10"/>
-                        <TextBlock Text="Address: " Foreground="Gray"/>
-                        <StackPanel Orientation="Horizontal" Margin="10,10,0,10">
-                            <TextBlock Text="{Binding Street}" />
-                            <TextBlock Text=" "/>
-                            <TextBlock Text="{Binding BuildingNumber}"/>
+                        <!--ContentPanel - place additional content here-->
+                        <StackPanel Margin="12,0,0,28">
+                            <TextBlock Text="Country: " Foreground="Gray"/>
+                            <TextBlock Text="{Binding Country}" Margin="10,10,0,10"/>
+                            <TextBlock Text="Region: " Foreground="Gray"/>
+                            <TextBlock Text="{Binding Region}" Margin="10,10,0,10"/>
+                            <TextBlock Text="Address: " Foreground="Gray"/>
+                            <StackPanel Orientation="Horizontal" Margin="10,10,0,10">
+                                <TextBlock Text="{Binding Street}" />
+                                <TextBlock Text=" "/>
+                                <TextBlock Text="{Binding BuildingNumber}"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                    <phone:WebBrowser cxi:WebBrowserHelper.Html="{Binding Description, Mode=TwoWay}" Name="webBrowserDescription" Margin="12,56,0,448" Grid.Row="1" Background="Black" Foreground="White" />
-                    <Button Content="Map" Margin="21,157,0,571" Click="Button_Click" Grid.RowSpan="2" />
-                </Grid>
+                        <StackPanel Margin="21,240,0,571">
+                            <Button Content="Map" Click="Button_Click" Grid.RowSpan="2" />
+                        </StackPanel>
+                        <StackPanel Margin="12,340,0,28">
+                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <!--<phone:WebBrowser cxi:WebBrowserHelper.Html="{Binding Description, Mode=TwoWay}" Name="webBrowserDescription" Margin="12,56,0,448" Grid.Row="1" Background="Black" Foreground="White" />-->
+
+                    </Grid>
+                </ScrollViewer>
             </controls:PivotItem>
 
             <!--Panorama item two-->

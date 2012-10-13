@@ -28,7 +28,11 @@ namespace TouristGuide.Core.Repository
 
         public IQueryable<Attraction> GetAttractions(string place, int start, int count)
         {
-            IQueryable<Attraction> attractions = context.Attraction.Include(c => c.Coordinates).Include(c => c.Country).Include(a => a.Address);
+            IQueryable<Attraction> attractions = context.Attraction
+                .Include(c => c.Coordinates)
+                .Include(c => c.Country)
+                .Include(a => a.Address)
+                .Include(i => i.Images);
 
             if (place != null)
             {

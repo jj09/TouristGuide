@@ -42,17 +42,29 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderThickness="2" BorderBrush="Gray" Margin="10,10,10,10">
-                                    <StackPanel Margin="10,10,10,10" Width="432" Height="78">
-                                            <TextBlock Text="{Binding Name}" FontSize="28" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image 
+                                            MaxWidth="100"
+                                            MaxHeight="100" 
+                                            Source="{Binding ImageUri}" />
+                                        <StackPanel Margin="10,10,10,10" Width="432" Height="78">
+                                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="28" />
                                             <!--Style="{StaticResource PhoneTextExtraLargeStyle}"-->
                                             <StackPanel Orientation="Horizontal">
-                                                <Rectangle Height="30" Width="50" Fill="#FFE5001b" Margin="12,0,9,0"/>
-                                                <TextBlock Text="{Binding Country}" 
-                                                    TextWrapping="Wrap" 
-                                                    Margin="12,0,12,0" 
-                                                    Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <!--<Rectangle Height="30" Width="50" Fill="#FFE5001b" Margin="12,0,9,0"/>-->
+                                                <Image 
+                                            Height="30" 
+                                            Width="50"  
+                                            Margin="12,0,9,0" 
+                                            Source="{Binding CountryFlagUri}" />
+                                                <TextBlock 
+                                            Text="{Binding Country}" 
+                                            TextWrapping="Wrap" 
+                                            Margin="12,0,12,0" 
+                                            Style="{StaticResource PhoneTextSubtleStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
+                                    </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -65,11 +77,9 @@
                         Name="infoCanvas"
                         Visibility="Visible"                        
                         >
-                        <TextBox 
+                        <TextBlock 
                             Text="{Binding InfoText}"
                             Foreground="White" 
-                            Background="Transparent"
-                            BorderThickness="0"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             Width="400"
