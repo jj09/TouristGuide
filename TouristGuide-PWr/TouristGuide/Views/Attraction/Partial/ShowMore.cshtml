@@ -1,0 +1,67 @@
+﻿<script type="text/javascript">
+    var more = true;
+    var loading = false;
+    var count = 10;
+    var start = 0;
+    var link = null;
+
+    $(document).ready(function () {
+        if ($('.review').length < count) {
+            more = false;
+            HideLink();
+        }
+        else {
+            ShowLink();
+        }
+    });
+
+    function ShowLink() {
+        link = $("<div>").addClass("bar").css("clear", "both").css("text-align", "center").css("margin-top", "15px")
+        link.append('<a onclick="GetPage()"><div class="showMore">Show More</div></a>'); 
+        $(".post").append(link);
+    }
+
+    function HideLink() {
+        $(link).remove();
+    }
+
+    function GetPage() {
+        if (more == true && loading == false) {
+            start += count;
+            GetRev();
+            loading = true;
+        }
+    }
+
+    function GetRev() {
+        $.ajax({
+            url: '@Url.Action("GetReviews", "Attraction")',
+            type: 'GET',
+            contentType: 'application/json',
+            data: { id: $("#ID").val(), start: start, count: count
+            },
+            dataType: 'html',
+            success: $.proxy(Results, this)
+        });
+    }
+
+    function Results(data) {
+        if (data != null && data.trim() != '') {
+            HideLink();
+            $(".post").append(data);
+            if (data.split('<div class="review">').length - 1 < count) {
+                more = false;
+                HideLink();
+            }
+            else {
+                ShowLink();
+                loading = false;
+            }
+        }
+        else {
+            more = false;
+            HideLink();
+        }
+    }
+
+</script>

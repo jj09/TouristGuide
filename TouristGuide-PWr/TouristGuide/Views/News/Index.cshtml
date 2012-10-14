@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TouristGuide.Models.News>
+@using TouristGuide.Helpers
+@{
+    ViewBag.Title = "News management";
+}
+
+<p>
+    @Html.ActionLink("Create news", "Create")
+</p>
+<table class="manage">
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Body</th>
+        <th>Options</th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.Truncate(item.Title, 15)</td>
+        <td>@String.Format("{0:d} ({0:HH}:{0:mm})", item.Date)</td>
+        <td>@Html.Truncate(item.Text, 15)</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

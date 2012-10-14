@@ -1,0 +1,180 @@
+﻿@model IEnumerable<TouristGuide.Models.Place>
+
+@{
+    ViewBag.Title = "Cities and regions";
+}
+
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.autocomplete.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    //pagger scrolling and filtering
+    var more = true;
+    var loading = false;
+    var count = 20;
+    var start = 0;
+    var loaderImg = null;
+    var country = '';
+    var place = '';
+
+    $(document).ready(function () {
+        $("#country").val('@Request.QueryString["country"]');
+        country = $("#country").val();
+        place = $("#place").val();
+
+        if ($('.regionBar').length < count) {
+            more = false;
+            HideLoading();
+        }
+        else {
+            ShowLoading();
+            $(window).scroll($.proxy(ScrollHandler, this));
+        }
+
+        AddActions();
+      });
+
+    function AddActions() {
+        $(".regionBar").click(function () {
+            var id = $(this).attr("name");
+            var url = "/place/details/";
+            window.location.replace(url + id);
+        });
+        $(".regionBar").hover(
+          function () {
+              $(this).css("background-image", "url(/Content/images/countryGreenDark.png)");
+              $(this).css("cursor", "pointer");
+          },
+          function () {
+              $(this).css("background-image", "url(/Content/images/countryGreen.png)");
+              $(this).css("cursor", "auto");
+          });
+      }
+
+    function ShowLoading() {
+        loaderImg = $("<div>").addClass("bar").css("clear", "both").css("text-align", "center");
+        var img = $("<img>").attr("src", "/Content/images/indicator.gif");
+        loaderImg.append(img);
+        $(".table_center").append(loaderImg);
+    }
+
+    function HideLoading() {
+        $(loaderImg).remove();
+    }
+
+    function isScrolledIntoView(elem) {
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + $(elem).height();
+
+        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
+    function ScrollHandler(event) {
+        if (isScrolledIntoView(loaderImg) && loading == false) {
+            GetPage();
+        }
+    }
+
+    function GetPage(event) {
+        if (more == true) {
+            start += count;
+            GetElements();
+            loading = true;
+        }
+    }
+
+    function GetElements() {
+        $.ajax({
+            url: '@Url.Action("GetPlaces", "Place")',
+            type: 'GET',
+            contentType: 'application/json',
+            data: { country: country, place: place,
+                    start: start, count: count
+            },
+            dataType: 'html',
+            success: $.proxy(Results, this)
+        });
+    }
+
+    function Results(data) {
+        if (data != null && data.trim() != '') {
+            HideLoading();
+            $(".table_center").append(data);
+            if (data.split('<div class="regionBar"').length - 1 < count) {
+                more = false;
+                HideLoading();
+            }
+            else {
+                ShowLoading();
+                loading = false;
+            }
+            AddActions();
+        }
+        else {
+            more = false;
+            HideLoading();
+            $("#noResults").attr("style", "");
+        }
+    }
+
+    function Filter() {
+        country = $("#country").val();
+        place = $("#place").val();
+        $("#noResults").attr("style", "display:none;");
+
+        $(".regionBar").remove();
+        ShowLoading();
+
+        more = true;
+        loading = true;
+        start = 0;
+        GetElements();
+    }
+
+</script>
+@Html.Partial("Partial/Autocomplete")
+
+@if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<div class="center border-bottom">
+<form action="/Place/Index" method="get">
+<div style="font-size:20px;margin-bottom:20px;">Filter City/Region</div>
+      <span style="font-size:16px;padding-right:5px;">country:</span><input type="text" name="country" id="country" />
+     <span style="font-size:16px;padding-right:5px;margin-left:20px;">city/region:</span> <input type="text" name="place" id ="place" />
+    <input type="submit" value="Filter" onclick="Filter(); return false;" style="margin-left:20px;color:Gray;"/>
+</form>
+</div>
+
+<div class="table_center">     
+       <span style="font-size:20px;">Cities / Regions</span>
+        @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+        {
+           <div>
+           admin
+           </div>
+        }
+  
+  <div style="margin-top:20px;">  
+    <div id="noResults" class="regionResults"
+    @if (Model == null || (Model != null && Model.Count() == 0))
+    {
+        @:>
+    }
+    else
+    { 
+        @: style="display:none;">
+    }
+        <span style="color: White; font-size: 20px;">No results found.</span>
+    </div>
+
+    @Html.DisplayFor(x=>x)
+  </div>
+</div>

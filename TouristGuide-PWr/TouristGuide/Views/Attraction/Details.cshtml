@@ -1,0 +1,182 @@
+﻿@model TouristGuide.Models.Attraction
+@using TouristGuide.Models;
+
+@{
+	ViewBag.Title = Model.Name;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#showreview").click(function () {
+            $("#addreview").toggle();
+        });
+        GetMap();
+    });
+
+    function AddReview() {
+        AttractionId = $("#AttractionID").val();
+        Author = $("#Author").val();
+        Rating = $("#Rating").val();
+        Text = $("#Text").val();
+
+        $.ajax({
+            url: '@Url.Action("ReviewCreate", "Attraction")',
+            type: 'GET',
+            contentType: 'application/json',
+            data: { AttractionId: AttractionId, Author: Author,
+                Rating: Rating, Text: Text
+            },
+            dataType: 'html',
+            success: $.proxy(ResultReview, this)
+        });
+    }
+
+    function ResultReview(data) {
+        if (data != null && data.trim() != '') {
+            $("#addreview").toggle();
+            $('#showreview').after(data);
+            $("#Text").val("");
+            $("#Rating").val("");
+        }
+    }
+</script>
+<script type="text/javascript">
+    var map = null;
+
+    function GetMap() {
+        map = new VEMap('myMap');
+
+        var latitude = @Model.Coordinates.Latitude;
+        var longitude = @Model.Coordinates.Longitude;
+        
+        map.LoadMap(new VELatLong(latitude, longitude),
+                12, VEMapStyle.Road, false);
+        map.HideScalebar();
+        
+        var shape = new VEShape(VEShapeType.Pushpin, new VELatLong(latitude, longitude)); 
+        map.AddShape(shape);        
+        
+    }
+</script>
+
+@Html.Partial("Partial/ShowMore")
+
+@Html.HiddenFor(x => x.ID)
+
+@Html.ActionLink(Model.Country.Name, "Details", "Country", new { id = Model.Country.ID}, null)
+@if(Model.Address.Region != null)
+{
+	<text>/</text>
+	@Model.Address.Region;
+
+}
+@if (Model.Address.City != null)
+{
+	<text>/</text>
+	@Model.Address.City;
+}
+
+<div class="post">
+@if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+{
+		<p>
+			@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+			@Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+			@Html.ActionLink("Go back to attractions' index", "Index")
+		</p>
+}
+ 
+ @Html.ActionLink("Add to favourites", "Add", "MyAttraction", new { attractionId = Model.ID }, null)
+
+ <div id="myMap" style="position: relative; width: 600px; height: 300px;"></div>
+	<p>@Html.Raw(Model.Description)</p>   
+<div class="post-address">
+<ul>
+	<li><b>Avg. rating:</b> @String.Format("{0:0.00}", Model.AvgRating)</li>
+	<li><b>Region:</b> @Model.Address.Region</li>
+	<li><b>City:</b> @Model.Address.City</li>
+	<li><b>Street:</b> @Model.Address.Street @Model.Address.BuildingNumber</li>
+</ul>
+</div>
+				
+@if (Model.Images.Count() > 0)
+{
+	<h3>Images</h3>
+	<div class="post-images">
+		<ul class="thumbs noscript">
+			@for (int i = 0; i < Model.Images.Count(); ++i)
+   {   
+				<li>
+					<a class="thumb" href="@Url.Content("~/Content/AttractionImages/" + Model.Images[i].FileName)" title="Image #@i">
+						<img src="@Url.Content("~/Content/AttractionImages/" + Model.Images[i].FileName)" alt="Image #@i" />
+					</a>
+				</li>
+   }
+		</ul>
+	</div>
+}
+@if (Model.Video != null)
+{
+	<h3>Video</h3>
+	<div class="post-video">
+		<object style="height: 340px; width: 560px">
+		<param name="movie" value="@Model.Video">
+		<param name="allowFullScreen" value="true">
+		<param name="allowScriptAccess" value="always">
+		<embed src="@Model.Video" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="560" height="340">
+		</object>
+	</div>
+}
+
+<div id="addreview" style="display: none">
+		@using (Html.BeginForm("ReviewCreate", "Attraction"))
+  {
+			@Html.ValidationSummary(true)
+			<fieldset>
+				<legend>Add review</legend>
+				@Html.Hidden("Author", Context.User.Identity.Name)
+				@Html.Hidden("AttractionID", Model.ID)
+				<div class="editor-label">
+					Rating (1-10)
+				</div>
+				<div class="editor-field">
+					<input class="text-box single-line" data-val="true" data-val-range="Rating scale: 1-10" data-val-range-max="10" data-val-range-min="1" id="Rating" name="Rating" type="text" value="" />
+				</div>
+
+				<div class="editor-label">
+					@Html.LabelFor(model => model.Description)
+				</div>
+				<div class="editor-field">
+					<textarea rows="5" cols="10" class="text-box multi-line" data-val="true" data-val-required="The Text field is required." id="Text" name="Text"></textarea>
+					<span class="field-validation-valid" data-valmsg-for="Text" data-valmsg-replace="true"/>
+				</div>
+				<p>
+					<input type="submit" value="Send" onclick="AddReview(); return false;" />
+				</p>
+			</fieldset>
+  }
+</div>
+
+	<h3 style="display: inline-block; margin-right: 20px;">Reviews</h3>
+
+	@if (Request.IsAuthenticated)
+ {
+		@:<a id="showreview">Add review</a>
+	}
+ else
+ {
+		@Html.ActionLink("Log on to add review", "LogOn", "Account", new { returnUrl = Request.RawUrl }, null)
+ }
+
+	@if (Model.Reviews.Count == 0)
+ {
+		<div class="review">
+			<p>No reviews.</p>
+		</div>
+ }    
+    @foreach (var rev in ViewData["Reviews"] as List<AttractionReview>)
+    { 
+        @Html.DisplayFor(x => rev)
+    }
+
+</div>

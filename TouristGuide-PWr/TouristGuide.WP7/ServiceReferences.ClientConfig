@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IWPService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost:4336/WPService.svc" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_IWPService" contract="WPService.IWPService"
+                name="BasicHttpBinding_IWPService" />
+        </client>
+    </system.serviceModel>
+</configuration>

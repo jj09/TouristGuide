@@ -1,0 +1,182 @@
+﻿@model TouristGuide.Models.Attraction
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/tiny_mce/tiny_mce.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        mode: "specific_textareas",
+        editor_selector: "TinyMCE",
+        theme: "advanced"
+    });
+
+    function UpdateText() {
+        var text = tinyMCE.get('Description').getContent();
+        $('#Description').html(text);
+    }
+
+    function addImgInput() {
+        $('.editor-field-images').append("<input type='file' name='photo' />");
+    }
+
+    function delImgInput() {
+        $('.editor-field-images input').last().remove();
+    }
+</script>
+<script type="text/javascript">
+    var map = null;
+
+    function GetMap() {
+        map = new VEMap('myMap');
+        map.AttachEvent("ondoubleclick", AddPushpin);
+        map.LoadMap();
+        map.HideScalebar();
+    }
+
+    onload = GetMap;
+
+    function AddPushpin(e) {
+        map.Clear();
+        var pixel = new VEPixel(e.mapX, e.mapY);
+        var point = map.PixelToLatLong(pixel);
+
+        var pin = new VEShape(VEShapeType.Pushpin, point);
+        map.AddShape(pin);
+
+        SetLatLong(point);
+
+        return true;
+    }
+
+    function SetLatLong(point) {
+        $('#Coordinates_Latitude').val(point.Latitude);
+        $('#Coordinates_Longitude').val(point.Longitude);
+    }
+</script>
+
+@using (Html.BeginForm("Create", "Attraction", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Details</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description, new { @class = "TinyMCE" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Location</legend>
+
+        <div style="display:inline-table">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Coordinates.Latitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Coordinates.Latitude)
+            @Html.ValidationMessageFor(model => model.Coordinates.Latitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Coordinates.Longitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Coordinates.Longitude)
+            @Html.ValidationMessageFor(model => model.Coordinates.Longitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Country)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Country.ID, new SelectList(ViewBag.Countries, "Value", "Text"))
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address.Region)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address.Region)
+            @Html.ValidationMessageFor(model => model.Address.Region)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address.City)
+            @Html.ValidationMessageFor(model => model.Address.City)
+        </div>        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address.Street)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address.Street)
+            @Html.ValidationMessageFor(model => model.Address.Street)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address.BuildingNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address.BuildingNumber)
+            @Html.ValidationMessageFor(model => model.Address.BuildingNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AttractionType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.AttractionType.ID, new SelectList(ViewBag.AttractionTypes, "Value", "Text"))            
+        </div>
+        </div>
+        <div style="display:inline-table; margin-left: 40px;">
+            Double click on map to pick a location.
+            <div id="myMap" style="position: relative; width: 300px; height: 300px;"></div>
+        </div>
+
+    </fieldset>
+    
+    <fieldset>
+        <legend>Photos and Video</legend>
+        
+        <div class="editor-field-images">
+            <input type="file" name="photo" />
+        </div>
+        <input type="button" value=" + " onclick="addImgInput()" /><input type="button" value=" - " onclick="delImgInput()" />
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Video)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Video)
+            @Html.ValidationMessageFor(model => model.Video)
+        </div>
+    </fieldset>
+
+    <p>
+        <input type="submit" value="Create" onclick="UpdateText()" />
+    </p>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

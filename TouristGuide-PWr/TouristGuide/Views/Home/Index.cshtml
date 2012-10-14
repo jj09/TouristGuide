@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TouristGuide.Models.News>
+@{
+    ViewBag.Title = "News";
+}
+@if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+{
+    <p>@Html.ActionLink("Create news", "Create", "News")</p>
+}
+
+@foreach (var item in Model)
+{
+    <div class="post">
+	    <h1 class="title">@item.Title</h1>
+        <p class="date">@String.Format("{0:d} ({0:HH}:{0:mm})", item.Date)</p>
+	    <p>@Html.Raw(item.Text)</p>
+        @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", "News", new { id = item.ID }, null)   
+            <text>|</text>
+            @Html.ActionLink("Delete", "Delete", "News", new { id = item.ID }, null)
+        }
+    </div>
+}
+
+<div class="center">
+@for (int i = 0; i < ViewBag.PagesCount; ++i)
+{
+    if ((i + 1) == ViewBag.CurrentPage)
+    {
+        <b>@Html.ActionLink("[" + (i + 1).ToString() + "]", "Index", new { start = 10 * i + 1 })</b><text>&nbsp;</text>
+    }
+    else
+    {
+        @Html.ActionLink("[" + (i + 1).ToString() + "]", "Index", new { start = 10 * i + 1 }) <text>&nbsp;</text>
+    }
+}
+</div>

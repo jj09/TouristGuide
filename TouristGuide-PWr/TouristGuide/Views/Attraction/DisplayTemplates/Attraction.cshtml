@@ -1,0 +1,16 @@
+﻿@model TouristGuide.Models.Attraction
+@using TouristGuide.Helpers
+           
+<div class="post attractionsLemonBg">
+    <h1 style="color:#9BB45E;" name="@Model.ID" class="attractionTitleDarkLemonBg">@Html.ActionLink(Model.Name,"Details", new { id = Model.ID })</h1>
+    <p style="color:#B29800;"><b>Avg. rating:</b> @String.Format("{0:0.00}", Model.AvgRating)</p>
+    <div class="attractionBodyBg">@Html.Raw(Html.Truncate(Model.Description, 200))
+  <div>@Html.ActionLink("Read more", "Details", new { id = Model.ID })</div>  </div>
+    @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin"))
+    {
+        <text>|</text>
+        @Html.ActionLink("Edit", "Edit", "Attraction", new { id = Model.ID }, null)  
+        <text>|</text>
+        @Html.ActionLink("Delete", "Delete", "Attraction", new { id = Model.ID }, null)
+    }
+</div>

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TouristGuide.Service.WPService" CodeBehind="WPService.svc.cs" %>

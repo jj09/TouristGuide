@@ -1,0 +1,18 @@
+﻿@model TouristGuide.Models.AttractionReview
+           
+<div class="review">
+    <p>
+        <b>Author: </b>@Model.Author</p>
+    <p>
+        <b>Date: </b>@String.Format("{0:d} ({0:HH}:{0:mm})", Model.Date)</p>
+    <p>
+        <b>Rating: </b>@Model.Rating</p>
+    <p>@Model.Text</p>
+    @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.Identity.Name == Model.Author)
+    {
+        <p>
+            @Html.ActionLink("Edit", "ReviewEdit", new { id = Model.ID }) |
+            @Html.ActionLink("Delete", "ReviewDelete", new { id = Model.ID })
+        </p>
+    }
+</div>

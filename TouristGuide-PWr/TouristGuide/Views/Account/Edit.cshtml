@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Edit user: " + Model.UserName;
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <th>
+                User:
+            </th>
+            <td>
+                <input type="hidden" name="UserName" value="@Model.UserName" />
+                <input type="text" value="@Model.UserName" name="newUserName" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                E-mail:
+            </th>
+            <td>
+                <input type="text" value="@Model.Email" name="newUserName" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Is active:
+            </th>
+            <td>
+                @if (Model.IsApproved == true)
+                {
+                    <input type="checkbox" checked="checked" value="true" name="IsApproved" />
+                }
+                else
+                {
+                    <input type="checkbox" value="true" name="IsApproved" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Role:
+            </th>
+            <td>                
+                @Html.DropDownList("Role", new SelectList(ViewBag.roles, "Value", "Text", Roles.GetRolesForUser(Model.UserName)[0]))
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+}
+<div>
+    @Html.ActionLink("Go back to users' list", "Index")
+</div>

@@ -1,0 +1,91 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide", "TouristGuide\TouristGuide.csproj", "{99896CE7-EA42-4E8B-B58C-6BBCEA2F40EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Tests", "TouristGuide.Tests\TouristGuide.Tests.csproj", "{A11F5E1C-1D01-44D6-8FC6-3B53326D1E17}"
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "TouristGuide.Azure", "TouristGuide.Azure\TouristGuide.Azure.ccproj", "{DD4242D3-4D4B-40E2-8538-2E9D1F4EE4D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Providers", "TouristGuide.Providers\TouristGuide.Providers.csproj", "{EFF48AD1-3F50-4A41-8B7A-AA0B24ACC4B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Core", "TouristGuide.Core\TouristGuide.Core.csproj", "{473ED9EE-B028-410E-801F-E429C5E6B58F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.WP7", "TouristGuide.WP7\TouristGuide.WP7.csproj", "{475EBA06-8948-4C95-A82D-35858B412AB6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{735DAE3C-2B0A-4D81-874A-5EFF0BD9D650} = {735DAE3C-2B0A-4D81-874A-5EFF0BD9D650}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristGuide.Service", "TouristGuide.Service\TouristGuide.Service.csproj", "{735DAE3C-2B0A-4D81-874A-5EFF0BD9D650}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs28
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TouristGuide.Azure\\TouristGuide.Azure.ccproj
+		SccProjectName1 = TouristGuide.Azure
+		SccLocalPath1 = TouristGuide.Azure
+		SccProjectUniqueName2 = TouristGuide.Providers\\TouristGuide.Providers.csproj
+		SccProjectName2 = TouristGuide.Providers
+		SccLocalPath2 = TouristGuide.Providers
+		SccProjectUniqueName3 = TouristGuide.Tests\\TouristGuide.Tests.csproj
+		SccProjectName3 = TouristGuide.Tests
+		SccLocalPath3 = TouristGuide.Tests
+		SccProjectUniqueName4 = TouristGuide\\TouristGuide.csproj
+		SccProjectName4 = TouristGuide
+		SccLocalPath4 = TouristGuide
+		SccProjectUniqueName5 = TouristGuide.Core\\TouristGuide.Core.csproj
+		SccProjectName5 = TouristGuide.Core
+		SccLocalPath5 = TouristGuide.Core
+		SccProjectUniqueName6 = TouristGuide.WP7\\TouristGuide.WP7.csproj
+		SccProjectName6 = TouristGuide.WP7
+		SccLocalPath6 = TouristGuide.WP7
+		SccProjectUniqueName7 = TouristGuide.Service\\TouristGuide.Service.csproj
+		SccProjectName7 = TouristGuide.Service
+		SccLocalPath7 = TouristGuide.Service
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99896CE7-EA42-4E8B-B58C-6BBCEA2F40EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99896CE7-EA42-4E8B-B58C-6BBCEA2F40EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99896CE7-EA42-4E8B-B58C-6BBCEA2F40EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99896CE7-EA42-4E8B-B58C-6BBCEA2F40EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A11F5E1C-1D01-44D6-8FC6-3B53326D1E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11F5E1C-1D01-44D6-8FC6-3B53326D1E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11F5E1C-1D01-44D6-8FC6-3B53326D1E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11F5E1C-1D01-44D6-8FC6-3B53326D1E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD4242D3-4D4B-40E2-8538-2E9D1F4EE4D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD4242D3-4D4B-40E2-8538-2E9D1F4EE4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD4242D3-4D4B-40E2-8538-2E9D1F4EE4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4242D3-4D4B-40E2-8538-2E9D1F4EE4D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFF48AD1-3F50-4A41-8B7A-AA0B24ACC4B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFF48AD1-3F50-4A41-8B7A-AA0B24ACC4B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFF48AD1-3F50-4A41-8B7A-AA0B24ACC4B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFF48AD1-3F50-4A41-8B7A-AA0B24ACC4B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{473ED9EE-B028-410E-801F-E429C5E6B58F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{473ED9EE-B028-410E-801F-E429C5E6B58F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{473ED9EE-B028-410E-801F-E429C5E6B58F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{473ED9EE-B028-410E-801F-E429C5E6B58F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475EBA06-8948-4C95-A82D-35858B412AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475EBA06-8948-4C95-A82D-35858B412AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475EBA06-8948-4C95-A82D-35858B412AB6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{475EBA06-8948-4C95-A82D-35858B412AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475EBA06-8948-4C95-A82D-35858B412AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475EBA06-8948-4C95-A82D-35858B412AB6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{735DAE3C-2B0A-4D81-874A-5EFF0BD9D650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735DAE3C-2B0A-4D81-874A-5EFF0BD9D650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735DAE3C-2B0A-4D81-874A-5EFF0BD9D650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735DAE3C-2B0A-4D81-874A-5EFF0BD9D650}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal
